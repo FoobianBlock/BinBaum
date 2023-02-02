@@ -52,7 +52,12 @@ public class WOERTERBUCH
         System.out.println("*****************************");
     }
     
-    public void inorderAusgeben(){
+    public void inorderAusgeben() {
         woerterbuch.inorderAusgeben();
+    }
+
+    public void tiefeTesten() {
+        String suche = "Heilige";
+        System.out.println(suche + " - " + woerterbuch.tiefeGeben(suche));
     }
 }

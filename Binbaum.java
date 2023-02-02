@@ -13,8 +13,11 @@ public class Binbaum {
         Wurzel = Wurzel.einfuegen(d);
     }
 
-    public void inorderAusgeben()
-    {
+    public void inorderAusgeben() {
         Wurzel.inorderAusgeben();
+    }
+
+    public int tiefeGeben(String suchSchluessel) {
+        return Wurzel.tiefeGeben(suchSchluessel);
     }
 }

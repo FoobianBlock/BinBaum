@@ -17,4 +17,9 @@ public class Abschluss extends Baumelement {
     void inorderAusgeben() {
         
     }
+
+    @Override
+    int tiefeGeben(String suchSchluessel) {
+        return -1;
+    }
 }

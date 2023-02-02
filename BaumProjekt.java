@@ -4,5 +4,6 @@ public class BaumProjekt {
         woerterbaum.inorderAusgeben();
         woerterbaum.suchen("Hilfe");
         woerterbaum.suchen("Holz");
+        woerterbaum.tiefeTesten();
     }
 }
