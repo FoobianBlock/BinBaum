@@ -38,13 +38,20 @@ public class Knoten extends Baumelement {
         }
         else {
             if(d.istGroesserAls(daten)) {
-                nachfolgerLinks = nachfolgerLinks.einfuegen(d);
+                nachgolferRechts = nachgolferRechts.einfuegen(d);
             }
             else {
-                nachgolferRechts = nachgolferRechts.einfuegen(d);
+                nachfolgerLinks = nachfolgerLinks.einfuegen(d);
             }
         }
 
         return this;
+    }
+
+    @Override
+    void inorderAusgeben() {
+        nachfolgerLinks.inorderAusgeben();
+        daten.infoAusgeben();
+        nachgolferRechts.inorderAusgeben();
     }
 }

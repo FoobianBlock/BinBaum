@@ -53,7 +53,6 @@ public class WOERTERBUCH
     }
     
     public void inorderAusgeben(){
-        // TODO
-        // woerterbuch.inorderAusgeben();
+        woerterbuch.inorderAusgeben();
     }
 }

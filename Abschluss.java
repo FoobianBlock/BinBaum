@@ -12,4 +12,9 @@ public class Abschluss extends Baumelement {
     Baumelement einfuegen(Datenelement d) {        
         return new Knoten(d);
     }
+
+    @Override
+    void inorderAusgeben() {
+        
+    }
 }

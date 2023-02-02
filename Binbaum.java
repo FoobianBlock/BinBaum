@@ -12,4 +12,9 @@ public class Binbaum {
     public void einfuegen(Datenelement d) {
         Wurzel = Wurzel.einfuegen(d);
     }
+
+    public void inorderAusgeben()
+    {
+        Wurzel.inorderAusgeben();
+    }
 }
