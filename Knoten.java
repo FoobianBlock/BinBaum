@@ -56,6 +56,20 @@ public class Knoten extends Baumelement {
     }
 
     @Override
+    void preorderAusgeben() {
+        daten.infoAusgeben();
+        nachfolgerLinks.preorderAusgeben();
+        nachgolferRechts.preorderAusgeben();
+    }
+
+    @Override
+    void postorderAusgeben() {
+        nachfolgerLinks.postorderAusgeben();
+        nachgolferRechts.postorderAusgeben();
+        daten.infoAusgeben();
+    }
+
+    @Override
     int tiefeGeben(String suchSchluessel) {
         if(daten.schluesselIstGleich(suchSchluessel)) {
             return 0;

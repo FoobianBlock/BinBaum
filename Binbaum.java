@@ -17,6 +17,14 @@ public class Binbaum {
         Wurzel.inorderAusgeben();
     }
 
+    public void preorderAusgeben() {
+        Wurzel.preorderAusgeben();
+    }
+
+    public void postorderAusgeben() {
+        Wurzel.postorderAusgeben();
+    }
+
     public int tiefeGeben(String suchSchluessel) {
         return Wurzel.tiefeGeben(suchSchluessel);
     }

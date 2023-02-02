@@ -14,9 +14,13 @@ public class Abschluss extends Baumelement {
     }
 
     @Override
-    void inorderAusgeben() {
-        
-    }
+    void inorderAusgeben() { }
+
+    @Override
+    void preorderAusgeben() { }
+
+    @Override
+    void postorderAusgeben() { }
 
     @Override
     int tiefeGeben(String suchSchluessel) {

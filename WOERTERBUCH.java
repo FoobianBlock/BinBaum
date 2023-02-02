@@ -56,6 +56,14 @@ public class WOERTERBUCH
         woerterbuch.inorderAusgeben();
     }
 
+    public void preorderAusgeben() {
+        woerterbuch.preorderAusgeben();
+    }
+
+    public void postorderAusgeben() {
+        woerterbuch.postorderAusgeben();
+    }
+
     public void tiefeTesten() {
         String suche = "Heilige";
         System.out.println(suche + " - " + woerterbuch.tiefeGeben(suche));
