@@ -13,6 +13,20 @@ public class WOERTERBUCH
      */
     public WOERTERBUCH(){
         woerterbuch = new Binbaum();
+        //Baum mit Daten füllen:
+        einfuegen("Heilige", "saint");
+        einfuegen("Hebamme", "midwife");
+        einfuegen("Haftung", "liability");
+        einfuegen("Haare", "hair");
+        einfuegen("Hai", "shark");
+        einfuegen("Heber", "lifter");
+        einfuegen("Hefe", "yeast");
+        einfuegen("Holz", "wood");
+        einfuegen("Herz", "heart");
+        einfuegen("Hilfe", "help");
+        einfuegen("Hund", "dog");
+        einfuegen("Huhn", "chicken");
+        einfuegen("Husten", "cough");
     }
 
      /**
@@ -26,18 +40,20 @@ public class WOERTERBUCH
         woerterbuch.einfuegen(new WOERTERBUCHEINTRAG(wort, bedeutung));
     }
 
-    public void testen()
-    {
-        einfuegen("Kuchen", "cake");
-        einfuegen("Fürsorge", "care");
-        einfuegen("Manschette", "cuff");
-        einfuegen("Auto", "car");
-        einfuegen("Höle", "cave");
-        einfuegen("Vorwahl", "code");
-        einfuegen("Anruf", "call");
-        einfuegen("Münze", "coin");
-
-        woerterbuch.suchen("Manschette").infoAusgeben();
-        woerterbuch.suchen("Kuchen").infoAusgeben();
+    public void suchen(String wort){
+        Datenelement w = woerterbuch.suchen(wort);
+        System.out.println("*****************************");
+        System.out.print("Der gesuchte Eintrag...");
+        if(w == null){
+            System.out.println("... wurde NICHT gefunden!");
+        }else{
+            w.infoAusgeben(); 
+        }
+        System.out.println("*****************************");
+    }
+    
+    public void inorderAusgeben(){
+        // TODO
+        // woerterbuch.inorderAusgeben();
     }
 }
