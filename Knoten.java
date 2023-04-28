@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Knoten extends Baumelement {
     private Baumelement nachfolgerLinks;
     private Baumelement nachgolferRechts;
@@ -7,14 +9,7 @@ public class Knoten extends Baumelement {
         nachfolgerLinks = new Abschluss();
         nachgolferRechts = new Abschluss();
         this.daten = d;
-
     }
-
-    /*
-    public Knoten(Datenelement d, Baumelement LiNf, Baumelement RiNf) {
-
-    }
-    */
 
     @Override
     Datenelement suchen(String vergleich) {
@@ -49,23 +44,26 @@ public class Knoten extends Baumelement {
     }
 
     @Override
-    void inorderAusgeben() {
-        nachfolgerLinks.inorderAusgeben();
+    void inorderAusgeben(ArrayList<Datenelement> datenelements) {
+        nachfolgerLinks.inorderAusgeben(datenelements);
+        datenelements.add(daten);
         daten.infoAusgeben();
-        nachgolferRechts.inorderAusgeben();
+        nachgolferRechts.inorderAusgeben(datenelements);
     }
 
     @Override
-    void preorderAusgeben() {
+    void preorderAusgeben(ArrayList<Datenelement> datenelements) {
+        datenelements.add(daten);
         daten.infoAusgeben();
-        nachfolgerLinks.preorderAusgeben();
-        nachgolferRechts.preorderAusgeben();
+        nachfolgerLinks.preorderAusgeben(datenelements);
+        nachgolferRechts.preorderAusgeben(datenelements);
     }
 
     @Override
-    void postorderAusgeben() {
-        nachfolgerLinks.postorderAusgeben();
-        nachgolferRechts.postorderAusgeben();
+    void postorderAusgeben(ArrayList<Datenelement> datenelements) {
+        nachfolgerLinks.postorderAusgeben(datenelements);
+        nachgolferRechts.postorderAusgeben(datenelements);
+        datenelements.add(daten);
         daten.infoAusgeben();
     }
 

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Abschluss extends Baumelement {
     public Abschluss() {
         
@@ -14,13 +16,13 @@ public class Abschluss extends Baumelement {
     }
 
     @Override
-    void inorderAusgeben() { }
+    void inorderAusgeben(ArrayList<Datenelement> datenelements) { }
 
     @Override
-    void preorderAusgeben() { }
+    void preorderAusgeben(ArrayList<Datenelement> datenelements) { }
 
     @Override
-    void postorderAusgeben() { }
+    void postorderAusgeben(ArrayList<Datenelement> datenelements) { }
 
     @Override
     int tiefeGeben(String suchSchluessel) {

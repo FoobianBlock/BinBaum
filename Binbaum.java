@@ -1,31 +1,39 @@
+import java.util.ArrayList;
+
 public class Binbaum {
-    private Baumelement Wurzel;
+    private Baumelement wurzel;
 
     public Binbaum() {
-        Wurzel = new Abschluss();
+        wurzel = new Abschluss();
     }
 
     public Datenelement suchen(String vergleich) {
-        return Wurzel.suchen(vergleich);
+        return wurzel.suchen(vergleich);
     }
 
     public void einfuegen(Datenelement d) {
-        Wurzel = Wurzel.einfuegen(d);
+        wurzel = wurzel.einfuegen(d);
     }
 
-    public void inorderAusgeben() {
-        Wurzel.inorderAusgeben();
+    public ArrayList<Datenelement> inorderAusgeben() {
+        ArrayList<Datenelement> datenelements = new ArrayList<>();
+        wurzel.inorderAusgeben(datenelements);
+        return datenelements;
     }
 
-    public void preorderAusgeben() {
-        Wurzel.preorderAusgeben();
+    public ArrayList<Datenelement> preorderAusgeben() {
+        ArrayList<Datenelement> datenelements = new ArrayList<>();
+        wurzel.preorderAusgeben(datenelements);
+        return datenelements;
     }
 
-    public void postorderAusgeben() {
-        Wurzel.postorderAusgeben();
+    public ArrayList<Datenelement> postorderAusgeben() {
+        ArrayList<Datenelement> datenelements = new ArrayList<>();
+        wurzel.postorderAusgeben(datenelements);
+        return datenelements;
     }
 
     public int tiefeGeben(String suchSchluessel) {
-        return Wurzel.tiefeGeben(suchSchluessel);
+        return wurzel.tiefeGeben(suchSchluessel);
     }
 }
