@@ -34,7 +34,7 @@ public class WOERTERBUCH {
         einfuegen("Hund", "dog");
         einfuegen("Huhn", "chicken");
         einfuegen("Husten", "cough");
-         */
+        */
     }
 
     /**
@@ -81,6 +81,35 @@ public class WOERTERBUCH {
     }
 
     // ------ SQL ------
+    public void datenSpeichern() throws Exception {
+
+        // Verbindung zur Datenbank herstellen
+        Connection connection = null;
+        connection = DriverManager.getConnection("jdbc:sqlite:woerterbuch.db");
+        PreparedStatement ps;
+
+        // Tabelle erstellen falls sie noch nicht existiert
+        ps = connection.prepareStatement("CREATE TABLE IF NOT EXISTS woerter (id INTEGER PRIMARY KEY AUTOINCREMENT, de VARCHAR(255) not null, en VARCHAR(255) not null)");
+        ps.executeUpdate();
+
+        // Datenbank vor dem neuen Eintragen der BinBaum Daten leeren
+        ps = connection.prepareStatement("DELETE FROM woerter");
+        ps.executeUpdate();
+
+        // Daten aus dem BinBaum erhalten
+        ArrayList<Datenelement> datenelements = woerterbuch.preorderAusgeben();
+
+        // In Datenbank einfügen
+        for (Datenelement d : datenelements) {
+            ps = connection.prepareStatement("INSERT INTO woerter(de, en) VALUES(?,?)");
+            ps.setString(1, ((WOERTERBUCHEINTRAG) d).gibDeutschesWort());
+            ps.setString(2, ((WOERTERBUCHEINTRAG) d).gibEnglischesWort());
+            ps.executeUpdate();
+        }
+
+        connection.close();
+    }
+
     public void datenLaden() throws Exception {
 
         // Verbindung zur Datenbank herstellen
@@ -99,31 +128,6 @@ public class WOERTERBUCH {
         // Daten in BinBaum übertragen
         while (rs.next()) {
             einfuegen(rs.getString("de"), rs.getString("en"));
-        }
-
-        connection.close();
-    }
-
-    public void datenSpeichern() throws Exception {
-
-        // Verbindung zur Datenbank herstellen
-        Connection connection = null;
-        connection = DriverManager.getConnection("jdbc:sqlite:woerterbuch.db");
-        PreparedStatement ps;
-
-        // Datenbank vor dem neuen Eintragen der BinBaum Daten leeren
-        ps = connection.prepareStatement("DELETE FROM woerter");
-        ps.executeUpdate();
-
-        // Daten aus dem BinBaum erhalten
-        ArrayList<Datenelement> datenelements = woerterbuch.preorderAusgeben();
-
-        // In Datenbank einfügen
-        for (Datenelement d : datenelements) {
-            ps = connection.prepareStatement("INSERT INTO woerter(de, en) VALUES(?,?)");
-            ps.setString(1, ((WOERTERBUCHEINTRAG) d).gibDeutschesWort());
-            ps.setString(2, ((WOERTERBUCHEINTRAG) d).gibEnglischesWort());
-            ps.executeUpdate();
         }
 
         connection.close();
