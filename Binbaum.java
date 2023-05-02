@@ -36,4 +36,8 @@ public class Binbaum {
     public int tiefeGeben(String suchSchluessel) {
         return wurzel.tiefeGeben(suchSchluessel);
     }
+
+    public void baumLeeren() {
+        wurzel = new Abschluss();
+    }
 }

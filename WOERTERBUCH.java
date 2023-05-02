@@ -88,7 +88,7 @@ public class WOERTERBUCH {
     }
 
     // ------ SQL ------
-    
+
     public void datenSpeichern() throws Exception {
         // Verbindung zur Datenbank herstellen
         Connection connection = null;
@@ -137,5 +137,9 @@ public class WOERTERBUCH {
         }
 
         connection.close();
+    }
+
+    public void baumLeeren() {
+        woerterbuch.baumLeeren();
     }
 }
