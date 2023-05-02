@@ -1,11 +1,10 @@
-
 public class WOERTERBUCHEINTRAG implements Datenelement {
     private String deutsch;
     private String englisch;
 
-    public WOERTERBUCHEINTRAG(String deutsch, String englisch) {
-        this.deutsch = deutsch;
-        this.englisch = englisch;
+    public WOERTERBUCHEINTRAG(String de, String en) {
+        deutsch = de;
+        englisch = en;
     }
 
     public void infoAusgeben() {
@@ -16,7 +15,7 @@ public class WOERTERBUCHEINTRAG implements Datenelement {
         WOERTERBUCHEINTRAG vergleichsWBE;
         vergleichsWBE = (WOERTERBUCHEINTRAG) dvergleich;
 
-        if (deutsch.compareTo(vergleichsWBE.gibDeutschesWort()) < 0) {
+        if(deutsch.compareTo(vergleichsWBE.gibDeutschesWort()) < 0) {
             return true;
         } else {
             return false;
@@ -28,7 +27,7 @@ public class WOERTERBUCHEINTRAG implements Datenelement {
         WOERTERBUCHEINTRAG vergleichsWBE;
         vergleichsWBE = (WOERTERBUCHEINTRAG) dvergleich;
 
-        if (deutsch.compareTo(vergleichsWBE.gibDeutschesWort()) == 0) {
+        if(deutsch.compareTo(vergleichsWBE.gibDeutschesWort()) == 0) {
             return true;
         } else {
             return false;
@@ -40,7 +39,7 @@ public class WOERTERBUCHEINTRAG implements Datenelement {
         WOERTERBUCHEINTRAG vergleichsWBE;
         vergleichsWBE = (WOERTERBUCHEINTRAG) dvergleich;
 
-        if (deutsch.compareTo(vergleichsWBE.gibDeutschesWort()) > 0) {
+        if(deutsch.compareTo(vergleichsWBE.gibDeutschesWort()) > 0) {
             return true;
         } else {
             return false;
@@ -51,14 +50,14 @@ public class WOERTERBUCHEINTRAG implements Datenelement {
      * Vergleicht mit dem deutschen Wort
      */
     public boolean schluesselIstGleich(String vergleichsSchluessel) {
-        return (deutsch.compareTo(vergleichsSchluessel) == 0);
+        return deutsch.compareTo(vergleichsSchluessel) == 0;
     }
 
     /*
      * ist das deutsche Wort > vergleich -> true
      */
     public boolean schluesselIstGroesserAls(String vergleichsSchluessel) {
-        if (deutsch.compareTo(vergleichsSchluessel) > 0) {
+        if(deutsch.compareTo(vergleichsSchluessel) > 0) {
             return true;
         } else {
             return false;

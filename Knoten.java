@@ -8,34 +8,30 @@ public class Knoten extends Baumelement {
     public Knoten(Datenelement d) {
         nachfolgerLinks = new Abschluss();
         nachgolferRechts = new Abschluss();
-        this.daten = d;
+        daten = d;
     }
 
     @Override
-    Datenelement suchen(String vergleich) {
+    public Datenelement suchen(String vergleich) {
         if(daten.schluesselIstGleich(vergleich)) {
             return daten;
-        }
-        else {
+        } else {
             if(daten.schluesselIstGroesserAls(vergleich)) {
                 return nachfolgerLinks.suchen(vergleich);
-            } 
-            else {
+            } else {
                 return nachgolferRechts.suchen(vergleich);
             }
         }
     }
 
     @Override
-    Baumelement einfuegen(Datenelement d) {
+    public Baumelement einfuegen(Datenelement d) {
         if(d.istGleich(daten)) {
             System.out.println("Datenelement ist bereits vorhanden und wird nicht eingefügt");
-        }
-        else {
+        } else {
             if(d.istGroesserAls(daten)) {
                 nachgolferRechts = nachgolferRechts.einfuegen(d);
-            }
-            else {
+            } else {
                 nachfolgerLinks = nachfolgerLinks.einfuegen(d);
             }
         }
@@ -44,7 +40,7 @@ public class Knoten extends Baumelement {
     }
 
     @Override
-    void inorderAusgeben(ArrayList<Datenelement> datenelements) {
+    public void inorderAusgeben(ArrayList<Datenelement> datenelements) {
         nachfolgerLinks.inorderAusgeben(datenelements);
         datenelements.add(daten);
         daten.infoAusgeben();
@@ -52,7 +48,7 @@ public class Knoten extends Baumelement {
     }
 
     @Override
-    void preorderAusgeben(ArrayList<Datenelement> datenelements) {
+    public void preorderAusgeben(ArrayList<Datenelement> datenelements) {
         datenelements.add(daten);
         daten.infoAusgeben();
         nachfolgerLinks.preorderAusgeben(datenelements);
@@ -60,7 +56,7 @@ public class Knoten extends Baumelement {
     }
 
     @Override
-    void postorderAusgeben(ArrayList<Datenelement> datenelements) {
+    public void postorderAusgeben(ArrayList<Datenelement> datenelements) {
         nachfolgerLinks.postorderAusgeben(datenelements);
         nachgolferRechts.postorderAusgeben(datenelements);
         datenelements.add(daten);
@@ -68,28 +64,24 @@ public class Knoten extends Baumelement {
     }
 
     @Override
-    int tiefeGeben(String suchSchluessel) {
+    public int tiefeGeben(String suchSchluessel) {
         if(daten.schluesselIstGleich(suchSchluessel)) {
             return 0;
-        }
-        else {
+        } else {
             if(daten.schluesselIstGroesserAls(suchSchluessel)) {
                 int t = nachfolgerLinks.tiefeGeben(suchSchluessel);
 
                 if(t == -1) {
                     return -1;
-                }
-                else {
+                } else {
                     return t + 1;
                 }
-            }
-            else {
+            } else {
                 int t = nachgolferRechts.tiefeGeben(suchSchluessel);
 
                 if(t == -1) {
                     return -1;
-                }
-                else {
+                } else {
                     return t + 1;
                 }
             }

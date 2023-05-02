@@ -5,9 +5,13 @@ public class BaumProjekt {
         try {
             woerterbaum.datenLaden();
             woerterbaum.datenSpeichern();
-        } catch (Exception e) {
+        } catch(Exception e) {
             throw new RuntimeException(e);
         }
+
+        /*
+            Bitte entferne die Kommentare und die Tests
+        */
 
         //System.out.println("\n-- Inorder Test --");
         //woerterbaum.inorderAusgeben();

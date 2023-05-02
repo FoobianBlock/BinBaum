@@ -5,20 +5,25 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /*
- * TEST-Klasse
- */
+    TEST-Klasse
+*/
 public class WOERTERBUCH {
     /**
-     * Implementierung des Wörterbuchs als geordneter Binärbaum
-     */
+        Implementierung des Wörterbuchs als geordneter Binärbaum
+    */
     private Binbaum woerterbuch;
 
     /**
-     * Konstruktor für Objekte der Klasse WOERTERBUCH, erzeugt ein Wörterbuch mit 12
-     * Einträgen
-     */
+        Konstruktor für Objekte der Klasse WOERTERBUCH, erzeugt ein Wörterbuch mit 12
+        Einträgen
+    */
     public WOERTERBUCH() {
         woerterbuch = new Binbaum();
+
+        /*
+            Bitte entferne die Kommentare
+        */
+
         // Baum mit Daten füllen:
         /*
         einfuegen("Heilige", "saint");
@@ -38,15 +43,15 @@ public class WOERTERBUCH {
     }
 
     /**
-     * Einfuegen erzeugt ein Objekt der Klasse WOERTERBUCHEINTRAG mit den
-     * Eingabewerten und
-     * fügt diesen Wörterbucheintrag sortiert in die Liste woerterbuch ein. Es wird
-     * verhindert,
-     * dass ein deutsches Wort mehrfach im Wörterbuch abgespeichert werden kann.
-     * 
-     * @param wort      deutsches Wort
-     * @param bedeutung die englische Bedeutung.
-     */
+        Einfuegen erzeugt ein Objekt der Klasse WOERTERBUCHEINTRAG mit den
+        Eingabewerten und
+        fügt diesen Wörterbucheintrag sortiert in die Liste woerterbuch ein. Es wird
+        verhindert,
+        dass ein deutsches Wort mehrfach im Wörterbuch abgespeichert werden kann.
+
+        @param wort      deutsches Wort
+        @param bedeutung die englische Bedeutung.
+    */
     public void einfuegen(String wort, String bedeutung) {
         woerterbuch.einfuegen(new WOERTERBUCHEINTRAG(wort, bedeutung));
     }
@@ -55,11 +60,13 @@ public class WOERTERBUCH {
         Datenelement w = woerterbuch.suchen(wort);
         System.out.println("*****************************");
         System.out.print("Der gesuchte Eintrag...");
-        if (w == null) {
+
+        if(w == null) {
             System.out.println("... wurde NICHT gefunden!");
         } else {
             w.infoAusgeben();
         }
+
         System.out.println("*****************************");
     }
 
@@ -81,8 +88,8 @@ public class WOERTERBUCH {
     }
 
     // ------ SQL ------
+    
     public void datenSpeichern() throws Exception {
-
         // Verbindung zur Datenbank herstellen
         Connection connection = null;
         connection = DriverManager.getConnection("jdbc:sqlite:woerterbuch.db");
@@ -100,7 +107,7 @@ public class WOERTERBUCH {
         ArrayList<Datenelement> datenelements = woerterbuch.preorderAusgeben();
 
         // In Datenbank einfügen
-        for (Datenelement d : datenelements) {
+        for(Datenelement d: datenelements) {
             ps = connection.prepareStatement("INSERT INTO woerter(de, en) VALUES(?,?)");
             ps.setString(1, ((WOERTERBUCHEINTRAG) d).gibDeutschesWort());
             ps.setString(2, ((WOERTERBUCHEINTRAG) d).gibEnglischesWort());
@@ -111,7 +118,6 @@ public class WOERTERBUCH {
     }
 
     public void datenLaden() throws Exception {
-
         // Verbindung zur Datenbank herstellen
         Connection connection = null;
         connection = DriverManager.getConnection("jdbc:sqlite:woerterbuch.db");
@@ -126,7 +132,7 @@ public class WOERTERBUCH {
         ResultSet rs = ps.executeQuery();
 
         // Daten in BinBaum übertragen
-        while (rs.next()) {
+        while(rs.next()) {
             einfuegen(rs.getString("de"), rs.getString("en"));
         }
 
