@@ -106,11 +106,13 @@ public class WOERTERBUCH {
         // Daten aus dem BinBaum erhalten
         ArrayList<Datenelement> datenelements = woerterbuch.preorderAusgeben();
 
+        
         // In Datenbank einfügen
-        for(Datenelement d: datenelements) {
-            ps = connection.prepareStatement("INSERT INTO woerter(de, en) VALUES(?,?)");
-            ps.setString(1, ((WOERTERBUCHEINTRAG) d).gibDeutschesWort());
-            ps.setString(2, ((WOERTERBUCHEINTRAG) d).gibEnglischesWort());
+        ps = connection.prepareStatement("INSERT INTO woerter(de, en) VALUES(?,?)");
+
+        for (int i = 0; i < datenelements.size(); i++) {
+            ps.setString(1, ((WOERTERBUCHEINTRAG) datenelements.get(i)).gibDeutschesWort());
+            ps.setString(2, ((WOERTERBUCHEINTRAG) datenelements.get(i)).gibEnglischesWort());
             ps.executeUpdate();
         }
 
