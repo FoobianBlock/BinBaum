@@ -17,7 +17,7 @@ public class BinbaumTest {
     @BeforeEach
     public void setUp() {
         starttime = nanoTime();
-        System.out.println("");
+        System.out.println("Starte Test...");
     }
 
     @AfterEach
@@ -59,10 +59,19 @@ public class BinbaumTest {
     /*
     In dieser Methode wollen wir das einfuegen von einzelnen Woertbucheintraegen testen.
     */
-    @Test // Hier sagen wir junit, das die folgende Funktion eine Test-Funktion ist
+    @Test // Hier sagen wir JUnit, das die folgende Funktion eine Test-Funktion ist
     public void einzelnEinfuegen() { // Test Funktionen sollten keine Argumente annehmen und void zurückgeben.
         Binbaum binbaum = leerenBinbaumErstellen(); // Neuen Binbaum erstellen
         binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hefe", "yeast")); // Einen Wörterbucheintrag in den Binbaum einfügen
         assertTrue(existiertElement(binbaum, "Hefe"), () -> "Das Element wurde nicht in den Binbaum eingefügt!"); // Überprüfen ob das Element eingefügt wurde
     }
+
+    @Test
+    public void suchen() {
+        Binbaum binbaum = vollenBinbaumErstellen();
+        String suchtext = "Haftung";
+        assertTrue(existiertElement(binbaum, suchtext), () -> "Das Element wurde nicht gefunden!");
+    }
+
+
 }
