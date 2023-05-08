@@ -1,43 +1,68 @@
-
-
+import static java.lang.System.nanoTime;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * The test class BinbaumTest.
- *
- * @author  (your name)
- * @version (a version number or a date)
- */
-public class BinbaumTest
-{
-    /**
-     * Default constructor for test class BinbaumTest
-     */
-    public BinbaumTest()
-    {
+public class BinbaumTest {
+
+    long starttime;
+    long endtime;
+    public BinbaumTest() {
+
+
+
     }
 
-    /**
-     * Sets up the test fixture.
-     *
-     * Called before every test case method.
-     */
     @BeforeEach
-    public void setUp()
-    {
+    public void setUp() {
+        starttime = nanoTime();
+        System.out.println("");
     }
 
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
     @AfterEach
-    public void tearDown()
-    {
+    public void tearDown() {
+        endtime = nanoTime();
     }
 
+    private Binbaum vollenBinbaumErstellen() {
+        Binbaum binbaum = new Binbaum();
+
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Heilige", "saint"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hebamme", "midwife"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Haftung", "liability"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Haare", "hair"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hai", "shark"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Heber", "lifter"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hefe", "yeast"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Holz", "wood"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hilfe", "help"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hund", "dog"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Huhn", "chicken"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Husten", "cough"));
+
+        return binbaum;
+    }
+
+    private boolean existiertElement(Binbaum binbaum, String wort) {
+        Datenelement d = binbaum.suchen(wort);
+        if (d!=null) {
+            return d.schluesselIstGleich(wort);
+        }
+        return false;
+    }
+
+    private Binbaum leerenBinbaumErstellen() {
+        return new Binbaum();
+    }
+
+    /*
+    In dieser Methode wollen wir das einfuegen von einzelnen Woertbucheintraegen testen.
+    */
+    @Test // Hier sagen wir junit, das die folgende Funktion eine Test-Funktion ist
+    public void einzelnEinfuegen() { // Test Funktionen sollten keine Argumente annehmen und void zurückgeben.
+        Binbaum binbaum = leerenBinbaumErstellen(); // Neuen Binbaum erstellen
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hefe", "yeast")); // Einen Wörterbucheintrag in den Binbaum einfügen
+        assertTrue(existiertElement(binbaum, "Hefe"), () -> "Das Element wurde nicht in den Binbaum eingefügt!"); // Überprüfen ob das Element eingefügt wurde
+    }
 }
