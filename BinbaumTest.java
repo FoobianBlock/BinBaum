@@ -73,5 +73,14 @@ public class BinbaumTest {
         assertTrue(existiertElement(binbaum, suchtext), () -> "Das Element wurde nicht gefunden!");
     }
 
+    @Test
+    public void tiefe() {
+        Binbaum binbaum = vollenBinbaumErstellen();
+        String suchen = "Hai";
+        assertEquals(binbaum.tiefeGeben(suchen), "Hai - 3", () -> "Falsche Tiefe.");
+    }
+
+
+
 
 }
