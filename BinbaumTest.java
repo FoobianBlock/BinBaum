@@ -17,12 +17,13 @@ public class BinbaumTest {
     @BeforeEach
     public void setUp() {
         starttime = nanoTime();
-        System.out.println("Starte Test...");
+        System.out.println("===== STARTE JUNIT TEST =====");
     }
 
     @AfterEach
     public void tearDown() {
         endtime = nanoTime();
+        System.out.println("Beende Test...\nDie Methode hat " + (endtime - starttime)/1000000 + " ms benötigt.\n");
     }
 
     private Binbaum vollenBinbaumErstellen() {
@@ -77,7 +78,7 @@ public class BinbaumTest {
     public void tiefe() {
         Binbaum binbaum = vollenBinbaumErstellen();
         String suchen = "Hai";
-        assertEquals(binbaum.tiefeGeben(suchen), "Hai - 3", () -> "Falsche Tiefe.");
+        assertEquals(binbaum.tiefeGeben(suchen), 3, () -> "Falsche Tiefe.");
     }
 
 
