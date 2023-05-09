@@ -40,10 +40,8 @@ public class BinbaumTest {
     // Wir verwenden hierfür die eingebaute Suche und geben jenachdem einen boolean (true/false) zurück.
     private boolean existiertElement(String wort) {
         Datenelement d = binbaum.suchen(wort);
-        if (d!=null) {
-            return true;
-        }
-        return false;
+        // d.infoAusgeben();
+        return d != null;
     }
 
     // Diese Methode wird vor jeder Test Methode ausgeführt
@@ -72,6 +70,34 @@ public class BinbaumTest {
         // Überprüfen ob das Element eingefügt wurde
         // Zum überprüfen benutzen wir assertTrue, eine Methode die von JUnit zur Verfügung gestellt wird
         assertTrue("Das Element wurde nicht in den Binbaum eingefügt!", existiertElement("Haselnuss"));
+    }
+
+    // In dieser Methode testen wir das mehrfache einfügen von WOERTERBUCHEINTRAGEN in den Binbaum
+    @Test
+    public void mehrereEinfuegen() {
+
+        // Einfügen mehrerer Wörterbucheinträge in den Binbaum
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Haus", "House"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hand", "Hand"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Himmel", "Heaven"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hoffnung", "Hope"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Heimat", "Home"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Herz", "Heart"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Haltung", "Posture"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hoffnungslosigkeit", "Hopelessness"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hölle", "Hell"));
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Höhe", "Height"));
+        // Hier testen wir ob alle Elemente vorhanden sind
+        assertTrue("Element Haus wurde nicht gefunden", existiertElement("Haus"));
+        assertTrue("Element Hand wurde nicht gefunden", existiertElement("Hand"));
+        assertTrue("Element Himmel wurde nicht gefunden", existiertElement("Himmel"));
+        assertTrue("Element Hoffnung wurde nicht gefunden", existiertElement("Hoffnung"));
+        assertTrue("Element Heimat wurde nicht gefunden", existiertElement("Heimat"));
+        assertTrue("Element Herz wurde nicht gefunden", existiertElement("Herz"));
+        assertTrue("Element Haltung wurde nicht gefunden", existiertElement("Haltung"));
+        assertTrue("Element Hoffnungslosigkeit wurde nicht gefunden", existiertElement("Hoffnungslosigkeit"));
+        assertTrue("Element Hölle wurde nicht gefunden", existiertElement("Hölle"));
+        assertTrue("Element Höhe wurde nicht gefunden", existiertElement("Höhe"));
     }
 
     // In dieser Methode testen wir das suchen einzelner WOERTERBUCHEINTRAEGE des Binbaums
