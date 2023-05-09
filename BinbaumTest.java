@@ -1,29 +1,16 @@
 import static java.lang.System.nanoTime;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 public class BinbaumTest {
 
+    Binbaum binbaum;
     long starttime;
     long endtime;
     public BinbaumTest() {
 
-
-
-    }
-
-    @BeforeEach
-    public void setUp() {
-        starttime = nanoTime();
-        System.out.println("===== STARTE JUNIT TEST =====");
-    }
-
-    @AfterEach
-    public void tearDown() {
-        endtime = nanoTime();
-        System.out.println("Beende Test...\nDie Methode hat " + (endtime - starttime)/1000000 + " ms benötigt.\n");
     }
 
     private Binbaum vollenBinbaumErstellen() {
@@ -45,7 +32,20 @@ public class BinbaumTest {
         return binbaum;
     }
 
-    private boolean existiertElement(Binbaum binbaum, String wort) {
+    @Before
+    public void setUp() {
+        binbaum = vollenBinbaumErstellen();
+        starttime = nanoTime();
+        System.out.println("===== STARTE JUNIT TEST =====");
+    }
+
+    @After
+    public void tearDown() {
+        endtime = nanoTime();
+        System.out.println("\n\nDie Methode hat " + (endtime - starttime)/1000000 + " ms benötigt.\n");
+    }
+
+    private boolean existiertElement(String wort) {
         Datenelement d = binbaum.suchen(wort);
         if (d!=null) {
             return true;
@@ -53,35 +53,28 @@ public class BinbaumTest {
         return false;
     }
 
-    private Binbaum leerenBinbaumErstellen() {
-        return new Binbaum();
-    }
-
     /*
     In dieser Methode wollen wir das einfuegen von einzelnen Woertbucheintraegen testen.
     */
     @Test // Hier sagen wir JUnit, das die folgende Funktion eine Test-Funktion ist
     public void einzelnEinfuegen() { // Test Funktionen sollten keine Argumente annehmen und void zurückgeben.
-        Binbaum binbaum = leerenBinbaumErstellen(); // Neuen Binbaum erstellen
-        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Hefe", "yeast")); // Einen Wörterbucheintrag in den Binbaum einfügen
-        assertTrue(existiertElement(binbaum, "Hefe"), () -> "Das Element wurde nicht in den Binbaum eingefügt!"); // Überprüfen ob das Element eingefügt wurde
+        binbaum.einfuegen(new WOERTERBUCHEINTRAG("Haselnuss", "hazelnutt")); // Einen Wörterbucheintrag in den Binbaum einfügen
+        assertTrue("Das Element wurde nicht in den Binbaum eingefügt!", existiertElement("Hasselnuss")); // Überprüfen ob das Element eingefügt wurde
     }
 
     @Test
     public void suchen() {
-        Binbaum binbaum = vollenBinbaumErstellen();
-        String suchtext = "Haftung";
-        assertTrue(existiertElement(binbaum, suchtext), () -> "Das Element wurde nicht gefunden!");
+        String suchtext = "Hund";
+
+        Datenelement d = binbaum.suchen(suchtext);
+        assertNotNull("Das Datenelement wurde nicht gefunden", d);
+        d.infoAusgeben();
     }
 
     @Test
     public void tiefe() {
-        Binbaum binbaum = vollenBinbaumErstellen();
         String suchen = "Hai";
-        assertEquals(binbaum.tiefeGeben(suchen), 3, () -> "Falsche Tiefe.");
+        assertEquals("Falsche Tiefe.", binbaum.tiefeGeben(suchen), 3);
     }
-
-
-
 
 }
